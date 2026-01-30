@@ -2,32 +2,16 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
+        stage('Check Workspace') {
             steps {
-                // If your code is in SCM, you can use checkout, 
-                // otherwise just skip this for local workspace
-                checkout scm
+                bat 'dir'
             }
         }
 
-        stage('Compile') {
+        stage('Display sample.txt') {
             steps {
-                // Compile Java file
-                sh 'javac SampleProgram.java'
+                bat 'type sample.txt'
             }
-        }
-
-        stage('Run') {
-            steps {
-                // Run the compiled Java program
-                sh 'java SampleProgram'
-            }
-        }
-    }
-
-    post {
-        always {
-            echo 'Build finished.'
         }
     }
 }
