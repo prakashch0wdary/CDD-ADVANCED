@@ -2,16 +2,32 @@ pipeline {
     agent any
 
     stages {
-        stage('Check Workspace') {
+        stage('Checkout') {
             steps {
-                bat 'dir'
+                // If using SCM, uncomment the next line
+                // checkout scm
+                echo 'Checking out source code...'
             }
         }
 
-        stage('Display sample.txt') {
+        stage('Compile') {
             steps {
-                bat 'type sample.txt'
+                echo 'Compiling Java program...'
+                sh 'javac SampleProgram.java'
             }
+        }
+
+        stage('Run') {
+            steps {
+                echo 'Running Java program...'
+                sh 'java SampleProgram'
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'Pipeline finished.'
         }
     }
 }
