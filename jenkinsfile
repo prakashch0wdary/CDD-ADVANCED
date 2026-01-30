@@ -12,14 +12,14 @@ pipeline {
         stage('Compile') {
             steps {
                 echo 'Compiling Java program...'
-                bat 'javac SampleProgram\\*.java'
+                bat 'javac SampleProgram.java'
             }
         }
 
         stage('Run') {
             steps {
                 echo 'Running Java program...'
-                bat 'java -cp SampleProgram MainClassName'
+                bat 'java -cp SampleProgram.java'
             }
         }
     }
