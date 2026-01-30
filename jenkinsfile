@@ -4,29 +4,30 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                echo 'Checking out source code...'
+                // If your code is in SCM, you can use checkout, 
+                // otherwise just skip this for local workspace
                 checkout scm
             }
         }
 
         stage('Compile') {
             steps {
-                echo 'Compiling Java program...'
-                bat 'javac SampleProgram.java'
+                // Compile Java file
+                sh 'javac SampleProgram.java'
             }
         }
 
         stage('Run') {
             steps {
-                echo 'Running Java program...'
-                bat 'java -cp SampleProgram.java'
+                // Run the compiled Java program
+                sh 'java SampleProgram'
             }
         }
     }
 
     post {
         always {
-            echo 'Pipeline finished.'
+            echo 'Build finished.'
         }
     }
 }
